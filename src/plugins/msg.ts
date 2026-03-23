@@ -1,4 +1,3 @@
-// src/plugins/msg.ts
 import type { App } from 'vue'
 
 export default {
@@ -26,7 +25,6 @@ export default {
     }
 
     app.config.globalProperties.$msg = msg
-    // Proporciona o plugin para o setup()
     app.provide('msg', msg)
   },
 }
