@@ -4,6 +4,10 @@ import { onMounted } from 'vue'
 import WelcomeScreen from '@/components/WelcomeScreen.vue'
 import RankingModal from '@/components/RankingModal.vue'
 import GameBoard from '@/components/GameBoard.vue'
+import { inject } from 'vue'
+import Toast from '@/components/Toast.vue'
+
+const msg: any = inject('msg')
 
 const {
   cards,
@@ -24,7 +28,7 @@ onMounted(() => {
 
 const digitouNome = () => {
   if (!nomeDoUsuario.value) {
-    alert('Digite seu nome para começar!')
+    msg.warning('Digite seu nome para começar!')
   } else {
     nomeDigitado.value = true
   }
@@ -33,6 +37,7 @@ const digitouNome = () => {
 
 <template>
   <div class="view-container">
+    <Toast />
     <WelcomeScreen v-if="!nomeDigitado" v-model="nomeDoUsuario" @start="digitouNome" />
 
     <div v-else class="game-view">

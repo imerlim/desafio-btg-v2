@@ -1,7 +1,9 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import type { Card, Ranking } from '@/types/game'
+import { inject } from 'vue'
 
 export function useMemoryGame() {
+  const msg: any = inject('msg')
   const cards = ref<Card[]>([])
   const blockButton = ref(false)
 
@@ -80,7 +82,7 @@ export function useMemoryGame() {
       saveRanking()
 
       setTimeout(() => {
-        alert(`Você ganhou o jogo com ${numeroDeJogadas.value} jogadas!`)
+        msg.success(`Você ganhou o jogo com ${numeroDeJogadas.value} jogadas!`, 'Atenção')
       }, 500)
     }
   }
